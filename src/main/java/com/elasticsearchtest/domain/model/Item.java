@@ -1,45 +1,58 @@
 package com.elasticsearchtest.domain.model;
 
+import lombok.*;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.*;
 
-@Document(indexName = "items")
+import java.time.LocalDateTime;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@ToString
+@Builder
+@Document(indexName = "item")
+@Mapping(mappingPath = "static/elastic-mapping.json")
+@Setting(settingPath = "static/static/elastic-token.json")
 public class Item {
     @Id
-    private String id;
+    @Field(name = "id", type = FieldType.Keyword)
+    private String itemId;
+
+    @Field(type = FieldType.Keyword)
+    private String user;
+
+    @Field(type = FieldType.Text)
     private String name;
+
+    @Field(type = FieldType.Text)
     private String description;
 
-    // 생성자, 게터 및 세터
-    public Item() {}
+    @Field(type = FieldType.Text)
+    private String category;
 
-    public Item(String id, String name, String description) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
+    @Field(type = FieldType.Integer)
+    private int price;
+
+    @Field(type = FieldType.Text)
+    private String itemImage;
+
+    // 날짜 추가
+    @Field(type = FieldType.Date)
+    private LocalDateTime createdDate;
+
+    @Field(type = FieldType.Date)
+    private LocalDateTime updatedDate;
+
+    public void update(Item updatedItem) {
+        this.name = updatedItem.getName();
+        this.description = updatedItem.getDescription();
+        this.category = updatedItem.getCategory();
+        this.price = updatedItem.getPrice();
+        this.itemImage = updatedItem.getItemImage();
+        this.updatedDate = LocalDateTime.now();
     }
 
-    public String getId() {
-        return id;
-    }
 
-    public void setId(String id) {
-        this.id = id;
-    }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 }
