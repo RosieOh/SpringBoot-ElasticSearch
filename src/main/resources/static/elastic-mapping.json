@@ -1,0 +1,11 @@
+{
+  "properties": {
+    "id": { "type": "keyword" },
+    "user": { "type": "text" },
+    "name": { "type": "text" },
+    "description": { "type": "text" },
+    "category": { "type": "keyword" },
+    "price": { "type": "integer" },
+    "itemImage": { "type": "text" }
+  }
+}
