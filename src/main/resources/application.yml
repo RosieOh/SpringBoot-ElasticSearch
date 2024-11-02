@@ -16,3 +16,25 @@ spring:
     url: jdbc:mariadb://localhost:3306/elasticsearchtest
     username: root
     password: 1234
+  data:
+    elasticsearch:
+      rest:
+        uris: http://localhost:9200
+      repositories:
+        enabled: true
+
+  elasticsearch:
+    index:
+      name: item
+
+# ?? ??
+logging:
+  level:
+    root: INFO  # ?? ?? ??
+    com.elasticsearchtest: DEBUG  # ?? ??? ?? ??
+  file:
+    name: app.log  # ?? ?? ??
+    path: logs  # ?? ??? ??? ????
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss} - %msg%n'  # ?? ?? ??
+    file: '%d{yyyy-MM-dd HH:mm:ss} - %msg%n'  # ?? ?? ??
