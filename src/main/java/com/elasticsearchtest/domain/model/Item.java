@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Builder
 @Document(indexName = "item")
 @Mapping(mappingPath = "static/elastic-mapping.json")
-@Setting(settingPath = "static/static/elastic-token.json")
+@Setting(settingPath = "static/token/elastic-token.json")
 public class Item {
     @Id
     @Field(name = "id", type = FieldType.Keyword)
